@@ -1,4 +1,5 @@
 data "aws_availability_zones" "azs" {}
+
 module "myapp-vpc" {
   source          = "terraform-aws-modules/vpc/aws"
   version         = "3.19.0"
@@ -18,11 +19,11 @@ module "myapp-vpc" {
 
   public_subnet_tags = {
     "kubernetes.io/cluster/myapp-eks-cluster" = "shared"
-    "kubernetes.io/role/elb"                  = 1
+    "kubernetes.io/role/elb"                  = "1"
   }
 
   private_subnet_tags = {
     "kubernetes.io/cluster/myapp-eks-cluster" = "shared"
-    "kubernetes.io/role/internal-elb"         = 1
+    "kubernetes.io/role/internal-elb"         = "1"
   }
 }
